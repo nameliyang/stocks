@@ -36,8 +36,6 @@ def get_EMA(df, N):
 
 
 def getMACD(df, short=12, long=26, M=9):
-    if len(df) == 0:
-        return df
     a = get_EMA(df, short)
     b = get_EMA(df, long)
     df['diff'] = pd.Series(a) - pd.Series(b)
