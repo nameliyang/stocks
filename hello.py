@@ -1,16 +1,14 @@
 import tushare as ts
+import os
+import pandas as pd
 
-df = ts.get_k_data('000970', start='2017-08-05', end='2018-08-05')
+stock_file = "stocks.csv"
+if os.path.exists(stock_file):
+    stocks = pd.read_csv(stock_file)
+else:
+    stocks = ts.get_stock_basics()
+    stocks.to_csv(stock_file, float_format='str')
+    stocks.reset_index(level=['code'], inplace=True)
 
-
-
-#plt.plot(df['date'],df['close'])
-#plt.show()
-#plt.plot()
-#for index, row in df.iterrows():
- #   print(row['date'], row['open'], row['close'], row['high'], row['low'], row['volume'], row['code'])
-
-print(type(df.index))
-
-
-
+for index, row in stocks.iterrows():
+    print(str(index) + '\t' + str(row['code']) + '\t' + row['name'])
