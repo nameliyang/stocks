@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 
 from stock import daily
-
 app = Flask(__name__)
 # 测试数据暂时存放
 tasks = []
