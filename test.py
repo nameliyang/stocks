@@ -1,11 +1,5 @@
-import matplotlib.pyplot as plt
-import numpy as np
-import matplotlib as mt
+import tushare as ts
 
-x = np.linspace(0, 10, 100)
-y = np.sin(x)
+currentPrice = ts.get_today_all()
 
-plt.plot(x,y, label='liner')
-plt.legend()
-plt.show()
-print(mt.is_interactive())
+currentPrice.to_csv('currentPrice.csv')

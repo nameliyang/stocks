@@ -1,6 +1,6 @@
+from flask import Flask, request, jsonify
+
 from stock import daily
-from flask import Flask, abort, request, jsonify
-import json
 
 app = Flask(__name__)
 # 测试数据暂时存放
