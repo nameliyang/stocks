@@ -13,14 +13,6 @@ else:
 
 stocks = stocks[~stocks['name'].str.contains('ST')]
 stocks = stocks[~stocks['code'].str.startswith('3')]
-ts.get_today_all()
-
-def addCurrentData(df):
-    ts.get_today_all()
-    pass
-
-
 
 for index, row in stocks.iterrows():
-    ts.get_today_all()
     print(str(index) + '\t' + str(row['code']) + '\t' + row['name'] + '\t' + str(row['pe']))

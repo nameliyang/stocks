@@ -1,6 +1,6 @@
-import tushare as ts
-import os
 import pandas as pd
+import tushare as ts
+from stock import stock
 
 '''
     code: code
@@ -19,10 +19,22 @@ def get_k_data(code, start, end):
 '''
 
 
-def get_k_data(code, start, end):
+def get_k_data_json(code, start, end):
     df = ts.get_k_data(code, start=start, end=end)
+    df = df.reset_index()
     df = getMACD(df)
     return df.to_json(orient='records')
+
+
+def get_k_data(code, start, end):
+    df = ts.get_k_data(code, start=start, end=end)
+    df = df.reset_index()
+    now = stock.getcurrent_day(code)
+    filter_data = df[df['date'] == now['date']]
+    if len(filter_data) == 0:
+        df = df.append(now, ignore_index=True)
+    df = getMACD(df)
+    return df
 
 
 def get_EMA(df, N):
