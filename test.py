@@ -1,6 +1,6 @@
 from stock import daily
 
-df = daily.get_k_data('603197', '2018-01-08', '2018-10-17')
+df = daily.get_k_data('000970', '2018-01-08', '2018-10-17')
 df = df[50:]
 
 first_macd = None
@@ -10,10 +10,9 @@ third_macd = None
 isBuy = False
 match = False
 
-
 def buyJudge(first_macd, second_macd, third_macd):
     if first_macd < 0 and second_macd > first_macd and third_macd < 0 and third_macd - second_macd > second_macd - first_macd and abs(
-            third_macd) > 0.15 and abs(first_macd) > 0.25  and second_macd - first_macd >= 0.05 and abs(first_macd) >= 0.8:
+            third_macd) > 0.15 and abs(first_macd) > 0.25  and second_macd - first_macd >= 0.05 and abs(first_macd) >= 0.7:
         return True
     return False
 
