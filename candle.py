@@ -7,7 +7,7 @@ import mpl_finance as mpf
 data = ts.get_k_data('002320', '2018-05-01', '2018-10-21')
 sma_10 = talib.SMA(np.array(data['close']), 10)
 sma_30 = talib.SMA(np.array(data['close']), 30)
-fig = plt.figure(figsize=(24, 8))
+fig = plt.figure(figsize=(32, 16))
 ax = fig.add_subplot(1, 1, 1)
 ax.set_xticks(range(0, len(data['date']), 50))
 ax.set_xticklabels(data['date'][::50])
