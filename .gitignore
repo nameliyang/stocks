@@ -13,6 +13,10 @@
 .idea/
 ac
 anac/Scripts/*
+Lib
+Scripts
+unique/pip_selfcheck.json
+pyvenv.cfg
 
 # Sensitive or high-churn files
 .idea/**/dataSources/

@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 
 from stock import daily
-app = Flask(__name__)
+myapp = Flask(__name__)
 # 测试数据暂时存放
 tasks = []
 
@@ -27,5 +27,5 @@ def get_task():
 
 
 if __name__ == "__main__":
-     app.run(host="0.0.0.0", port=8383, threaded=True)
+    myapp.run(host="0.0.0.0", port=8383, threaded=True)
 
