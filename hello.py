@@ -21,7 +21,7 @@ for index, row in stocks.iterrows():
     pe = row['pe']
     # print(str(index) + '\t' + str(row['code']) + '\t' + row['name'] + '\t' + str(row['pe']))
     if pe > 0 and pe < 100:
-        data = daily.get_k_data(code, '2018-01-01', '2018-10-23')
+        data = daily.get_k_data(code, '2018-01-01', '2018-07-10')
         if (len(data) > 3):
             data = data.iloc[[-3, -2, -1]]
             preMacd = None

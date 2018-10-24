@@ -35,7 +35,8 @@ def get_k_data(code, start, end):
             return
         filter_data = df[df['date'] == now['date']]
         if len(filter_data) == 0:
-            df = df.append(now, ignore_index=True)
+            #df = df.append(now, ignore_index=True)
+            pass
         df = getMACD(df)
     except:
         print("--------------------error")
