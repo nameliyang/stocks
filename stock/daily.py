@@ -39,7 +39,8 @@ def get_k_data(code, start, end):
             pass
         df = getMACD(df)
     except:
-        print("--------------------error")
+        pass
+        #print(code+ "--------------------error")
     return df
 
 

@@ -16,6 +16,15 @@ stocks = stocks[~stocks['name'].str.contains('ST')]
 stocks = stocks[~stocks['name'].str.contains('S')]
 stocks = stocks[~stocks['code'].str.startswith('3')]
 
+
+def buyJudge(first_macd, second_macd, third_macd):
+    if first_macd < 0 and second_macd > first_macd and third_macd < 0 and third_macd - second_macd > second_macd - first_macd and abs(
+            third_macd) > 0.15 and abs(first_macd) > 0.25 and second_macd - first_macd >= 0.05 and abs(
+        first_macd) >= 0.7:
+        return True
+    return False
+
+
 for index, row in stocks.iterrows():
     code = str(row['code'])
     pe = row['pe']
@@ -26,15 +35,8 @@ for index, row in stocks.iterrows():
             data = data.iloc[[-3, -2, -1]]
             preMacd = None
             isBuy = True
-            for i, r in data.iterrows():
-                if not preMacd:
-                    preMacd = r['macd']
-                else:
-                    if r['macd'] >= preMacd and abs(r['macd'] - preMacd) > 0.1:
-                        isBuy = True
-                        preMacd = r['macd']
-                    else:
-                        isBuy= False
-                        break
-            if isBuy:
-                print(str(index) + '\t' + str(row['code']) + '\t' + row['name'] + '\t' + str(row['pe']))
+            firstMacd = data['macd'].iloc[0]
+            secondMacd = data['macd'].iloc[1]
+            thirdMacd = data['macd'].iloc[2]
+            if buyJudge(firstMacd, secondMacd, thirdMacd):
+                print('buy ' + code + ' ' + row['name']+' close:'+ str(data['close'].iloc[2]))
