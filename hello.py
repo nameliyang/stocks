@@ -17,10 +17,14 @@ stocks = stocks[~stocks['name'].str.contains('S')]
 stocks = stocks[~stocks['code'].str.startswith('3')]
 
 
+# def buyJudge(first_macd, second_macd, third_macd):
+#     if first_macd < 0 and second_macd > first_macd and third_macd < 0 and third_macd - second_macd > second_macd - first_macd and abs(
+#             third_macd) > 0.15 and abs(first_macd) > 0.25 and second_macd - first_macd >= 0.05 and abs(
+#         first_macd) >= 0.7:
+#         return True
+#     return False
 def buyJudge(first_macd, second_macd, third_macd):
-    if first_macd < 0 and second_macd > first_macd and third_macd < 0 and third_macd - second_macd > second_macd - first_macd and abs(
-            third_macd) > 0.15 and abs(first_macd) > 0.25 and second_macd - first_macd >= 0.05 and abs(
-        first_macd) >= 0.7:
+    if first_macd < 0 and second_macd > first_macd and third_macd>second_macd and third_macd < 0 and third_macd - second_macd >= second_macd - first_macd:
         return True
     return False
 
@@ -30,7 +34,7 @@ for index, row in stocks.iterrows():
     pe = row['pe']
     # print(str(index) + '\t' + str(row['code']) + '\t' + row['name'] + '\t' + str(row['pe']))
     if pe > 0 and pe < 100:
-        data = daily.get_k_data(code, '2018-01-01', '2018-07-10')
+        data = daily.get_k_data(code, '2018-01-01', '2018-11-15')
         if (len(data) > 3):
             data = data.iloc[[-3, -2, -1]]
             preMacd = None
